@@ -1,0 +1,140 @@
+# depslib dependency file v1.0
+1253589942 source:e:\КГТУ\Диплом\c++\syn_flood\main.cpp
+	<stdio.h>
+	<conio.h>
+	<pcap.h>
+	"types.h"
+	"ethernet.h"
+	"ip.h"
+	"tcp.h"
+
+1240755665 e:\КГТУ\Диплом\c++\syn_flood\types.h
+
+1253527209 e:\КГТУ\Диплом\c++\syn_flood\ethernet.h
+	"types.h"
+
+1240807658 e:\КГТУ\Диплом\c++\syn_flood\ip.h
+	"types.h"
+
+1253545672 e:\КГТУ\Диплом\c++\syn_flood\tcp.h
+	"types.h"
+
+1260760733 source:e:\syn_flood\main.cpp
+	<stdlib.h>
+	<pcap.h>
+	"types.h"
+	"ethernet.h"
+	"ip.h"
+	"icmp.h"
+	"tcp.h"
+
+1240752066 e:\syn_flood\types.h
+
+1253523610 e:\syn_flood\ethernet.h
+	"types.h"
+
+1240804060 e:\syn_flood\ip.h
+	"types.h"
+
+1254051912 e:\syn_flood\tcp.h
+	"types.h"
+
+1240790890 e:\syn_flood\icmp.h
+	"types.h"
+
+1428500679 source:d:\КГТУ\Диплом\syn_flood\main.cpp
+	<stdlib.h>
+	<pcap.h>
+	"types.h"
+	"ethernet.h"
+	"ip.h"
+	"icmp.h"
+	"tcp.h"
+
+1428208906 d:\КГТУ\Диплом\syn_flood\types.h
+
+1428208906 d:\КГТУ\Диплом\syn_flood\ethernet.h
+	"types.h"
+
+1428208906 d:\КГТУ\Диплом\syn_flood\ip.h
+	"types.h"
+
+1428208906 d:\КГТУ\Диплом\syn_flood\icmp.h
+	"types.h"
+
+1254055512 d:\КГТУ\Диплом\syn_flood\tcp.h
+	"types.h"
+
+1277433864 d:\КГТУ\Диплом\syn_flood\wpdpack\include\pcap\pcap.h
+	<pcap-stdinc.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<sys/types.h>
+	<sys/time.h>
+	<pcap/bpf.h>
+	<stdio.h>
+	<Win32-Extensions.h>
+	<remote-ext.h>
+
+1254853204 d:\КГТУ\Диплом\syn_flood\wpdpack\include\pcap-stdinc.h
+	<winsock2.h>
+	<fcntl.h>
+	"bittypes.h"
+	<time.h>
+	<io.h>
+	"IP6_misc.h"
+	<stdint.h>
+
+1254853204 d:\КГТУ\Диплом\syn_flood\wpdpack\include\bittypes.h
+
+1254853198 d:\КГТУ\Диплом\syn_flood\wpdpack\include\ip6_misc.h
+	<winsock2.h>
+	<ws2tcpip.h>
+
+1254853204 d:\КГТУ\Диплом\syn_flood\wpdpack\include\pcap\bpf.h
+
+1155118618 d:\КГТУ\Диплом\syn_flood\wpdpack\include\win32-extensions.h
+
+1190867536 d:\КГТУ\Диплом\syn_flood\wpdpack\include\remote-ext.h
+
+1428510441 source:d:\КГТУ\Диплом\syn_flood\sources\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<pcap.h>
+	"../headers/types.h"
+	"../headers/ethernet.h"
+	"../headers/ip.h"
+	"../headers/icmp.h"
+	"../headers/tcp.h"
+
+1428510200 d:\КГТУ\Диплом\syn_flood\headers\types.h
+
+1428208906 d:\КГТУ\Диплом\syn_flood\headers\ethernet.h
+	"types.h"
+
+1428208906 d:\КГТУ\Диплом\syn_flood\headers\ip.h
+	"types.h"
+
+1428208906 d:\КГТУ\Диплом\syn_flood\headers\icmp.h
+	"types.h"
+
+1254055512 d:\КГТУ\Диплом\syn_flood\headers\tcp.h
+	"types.h"
+
+1428509967 source:d:\КГТУ\Диплом\syn_flood\sources\land_syn_flood.cpp
+	<pcap.h>
+	"../headers/types.h"
+	"../headers/ethernet.h"
+	"../headers/ip.h"
+	"../headers/icmp.h"
+	"../headers/tcp.h"
+
+1428509967 source:d:\КГТУ\Диплом\syn_flood\sources\icmp_flood.cpp
+	<pcap.h>
+	"../headers/types.h"
+	"../headers/ethernet.h"
+	"../headers/ip.h"
+	"../headers/icmp.h"
+	"../headers/tcp.h"
+
