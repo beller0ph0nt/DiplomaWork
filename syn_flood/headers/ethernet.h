@@ -1,22 +1,22 @@
-#ifndef ETHERNET_H_INCLUDED
+п»ї#ifndef ETHERNET_H_INCLUDED
 #define ETHERNET_H_INCLUDED
 
 #include "types.h"
 
 #define ETHERNET_DATA_LENGTH 1460
 
-// Структура Ethernet заголовка.
+// РЎС‚СЂСѓРєС‚СѓСЂР° Ethernet Р·Р°РіРѕР»РѕРІРєР°.
 struct ethernet_header
 {
-    BYTE destination_mac_address[6];    /* [6 байт]     MAC адресс получателя - идентифицирует получателя. */
-    BYTE source_mac_address[6];         /* [6 байт]     MAC адрес отправителя - идентифицирует отправителя. */
-    WORD type;                          /* [2 байта]    Тип протокола - указвает к какому протоколу более высокого уровня относится данная дейтаграмма. */
-// Основные типы протоколов более высокого уровня.
-#define ETHERNET_TYPE_IP        0x0800      /* Протокол IP (Internet Protocol). */
-#define ETHERNET_TYPE_ARP       0x0806      /* Протокол ARP (Address Resolution Protocol). */
-#define ETHERNET_TYPE_RARP      0x8035      /* Протокол RARP (Reverse Address Resolution Protocol). */
-#define ETHERNET_TYPE_IPV6      0x86DD      /* Протокол IPv6 (Internet Protocol ver. 6). */
-#define ETHERNET_TYPE_LOOPBACK  0x9000      /* Протокол Loopback (Используеться для тестирования интерфейса). */
+    BYTE destination_mac_address[6];    /* [6 Р±Р°Р№С‚]     MAC Р°РґСЂРµСЃСЃ РїРѕР»СѓС‡Р°С‚РµР»СЏ - РёРґРµРЅС‚РёС„РёС†РёСЂСѓРµС‚ РїРѕР»СѓС‡Р°С‚РµР»СЏ. */
+    BYTE source_mac_address[6];         /* [6 Р±Р°Р№С‚]     MAC Р°РґСЂРµСЃ РѕС‚РїСЂР°РІРёС‚РµР»СЏ - РёРґРµРЅС‚РёС„РёС†РёСЂСѓРµС‚ РѕС‚РїСЂР°РІРёС‚РµР»СЏ. */
+    WORD type;                          /* [2 Р±Р°Р№С‚Р°]    РўРёРї РїСЂРѕС‚РѕРєРѕР»Р° - СѓРєР°Р·РІР°РµС‚ Рє РєР°РєРѕРјСѓ РїСЂРѕС‚РѕРєРѕР»Сѓ Р±РѕР»РµРµ РІС‹СЃРѕРєРѕРіРѕ СѓСЂРѕРІРЅСЏ РѕС‚РЅРѕСЃРёС‚СЃСЏ РґР°РЅРЅР°СЏ РґРµР№С‚Р°РіСЂР°РјРјР°. */
+// РћСЃРЅРѕРІРЅС‹Рµ С‚РёРїС‹ РїСЂРѕС‚РѕРєРѕР»РѕРІ Р±РѕР»РµРµ РІС‹СЃРѕРєРѕРіРѕ СѓСЂРѕРІРЅСЏ.
+#define ETHERNET_TYPE_IP        0x0800      /* РџСЂРѕС‚РѕРєРѕР» IP (Internet Protocol). */
+#define ETHERNET_TYPE_ARP       0x0806      /* РџСЂРѕС‚РѕРєРѕР» ARP (Address Resolution Protocol). */
+#define ETHERNET_TYPE_RARP      0x8035      /* РџСЂРѕС‚РѕРєРѕР» RARP (Reverse Address Resolution Protocol). */
+#define ETHERNET_TYPE_IPV6      0x86DD      /* РџСЂРѕС‚РѕРєРѕР» IPv6 (Internet Protocol ver. 6). */
+#define ETHERNET_TYPE_LOOPBACK  0x9000      /* РџСЂРѕС‚РѕРєРѕР» Loopback (РСЃРїРѕР»СЊР·СѓРµС‚СЊСЃСЏ РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ РёРЅС‚РµСЂС„РµР№СЃР°). */
 };
 
 #endif // ETHERNET_H_INCLUDED

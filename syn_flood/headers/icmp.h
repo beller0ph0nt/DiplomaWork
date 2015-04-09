@@ -1,38 +1,38 @@
-#ifndef ICMP_H_INCLUDED
+п»ї#ifndef ICMP_H_INCLUDED
 #define ICMP_H_INCLUDED
 
 #include "types.h"
 
-// Структура ICMP заголовка (Только для сообщений-запросов).
+// РЎС‚СЂСѓРєС‚СѓСЂР° ICMP Р·Р°РіРѕР»РѕРІРєР° (РўРѕР»СЊРєРѕ РґР»СЏ СЃРѕРѕР±С‰РµРЅРёР№-Р·Р°РїСЂРѕСЃРѕРІ).
 struct icmp_header
 {
-    BYTE type;				/* [1 байт]		Тип сообщения - определяет тип сообщения протокола ICMP. */
-// Типы сообщений протокола ICMP.
-#define ICMP_TYPE_ECHO_REPLY                    0    // Ответ на запрос echo.
-#define ICMP_TYPE_DESTINATION_UNREACHABLE       3    // Получатель недостижим.
-#define ICMP_TYPE_SOURCE_QUENCH                 4    // Подавление источника.
-#define ICMP_TYPE_REDIRECT                      5    // Перенаправление.
-#define ICMP_TYPE_ALTERNATE_HOST_ADDRESS        6    // Альтернативный адрес хоста.
-#define ICMP_TYPE_ECHO_REQUEST                  8    // Запрос echo.
-#define ICMP_TYPE_ROUTER_ADVERTISEMENT          9    // Анонсирование маршрутизатора.
-#define ICMP_TYPE_ROUTER_SELECTION              10	 // Выбор маршрутизатора.
-#define ICMP_TYPE_TIME_EXCEEDED                 11	 // Превышение времени.
-#define ICMP_TYPE_PARAMETER_PROBLEM             12	 // Проблема с параметром.
-#define ICMP_TYPE_TIMESTAMP_REQUEST             13	 // Запрос временной отметки в формате Timestamp.
-#define ICMP_TYPE_TIMESTAMP_REPLY               14	 // Ответ на запрос временной отметки.
-#define ICMP_TYPE_INFORMATION_REQUEST           15	 // Запрос информации.
-#define ICMP_TYPE_INFORMATION_REPLY             16	 // Ответ на запрос информации.
-#define ICMP_TYPE_ADDRESS_MASK_REQUEST          17	 // Запрос маски адреса.
-#define ICMP_TYPE_ADDRESS_MASK_REPLY            18	 // Ответ на запрос маски адреса.
-#define ICMP_TYPE_TRACEROUT                     30	 // Трассировка маршрута.
-#define ICMP_TYPE_DATAGRAM_CONVERSION_ERROR     31	 // Ошибка преобразования дейтаграммы.
-#define ICMP_TYPE_MOBILE_HOST_REDIRECT          32	 // Перенаправление мобильного хоста.
-#define ICMP_TYPE_IPv6_WHERE_ARE_YOU            33	 // Где я? - запрос протокола IPv6.
-#define ICMP_TYPE_IPv6_I_AM_HERE                34	 // Здесь - ответ на запрос.
-    BYTE code;				/* [1 байт] 	Код ошибки - определяет код ошибки ICMP сообщения (Зависит от типа сообщения). */
-    WORD checksum;			/* [2 байта]	Контрольная сумма - контрольная сумма считается для всей дейтаграммы целиком (Заголовок ICMP + данные). */
-    WORD identifier;		/* [2 байта]	Идентификатор - необходим для селекции сообщений, посланных разным хостам. */
-    WORD sequence_number;	/* [2 байта]	Номер последовательности - необходим для селекции нескольких сообщений, посланных одному хосту. */
+    BYTE type;				/* [1 Р±Р°Р№С‚]		РўРёРї СЃРѕРѕР±С‰РµРЅРёСЏ - РѕРїСЂРµРґРµР»СЏРµС‚ С‚РёРї СЃРѕРѕР±С‰РµРЅРёСЏ РїСЂРѕС‚РѕРєРѕР»Р° ICMP. */
+// РўРёРїС‹ СЃРѕРѕР±С‰РµРЅРёР№ РїСЂРѕС‚РѕРєРѕР»Р° ICMP.
+#define ICMP_TYPE_ECHO_REPLY                    0    // РћС‚РІРµС‚ РЅР° Р·Р°РїСЂРѕСЃ echo.
+#define ICMP_TYPE_DESTINATION_UNREACHABLE       3    // РџРѕР»СѓС‡Р°С‚РµР»СЊ РЅРµРґРѕСЃС‚РёР¶РёРј.
+#define ICMP_TYPE_SOURCE_QUENCH                 4    // РџРѕРґР°РІР»РµРЅРёРµ РёСЃС‚РѕС‡РЅРёРєР°.
+#define ICMP_TYPE_REDIRECT                      5    // РџРµСЂРµРЅР°РїСЂР°РІР»РµРЅРёРµ.
+#define ICMP_TYPE_ALTERNATE_HOST_ADDRESS        6    // РђР»СЊС‚РµСЂРЅР°С‚РёРІРЅС‹Р№ Р°РґСЂРµСЃ С…РѕСЃС‚Р°.
+#define ICMP_TYPE_ECHO_REQUEST                  8    // Р—Р°РїСЂРѕСЃ echo.
+#define ICMP_TYPE_ROUTER_ADVERTISEMENT          9    // РђРЅРѕРЅСЃРёСЂРѕРІР°РЅРёРµ РјР°СЂС€СЂСѓС‚РёР·Р°С‚РѕСЂР°.
+#define ICMP_TYPE_ROUTER_SELECTION              10	 // Р’С‹Р±РѕСЂ РјР°СЂС€СЂСѓС‚РёР·Р°С‚РѕСЂР°.
+#define ICMP_TYPE_TIME_EXCEEDED                 11	 // РџСЂРµРІС‹С€РµРЅРёРµ РІСЂРµРјРµРЅРё.
+#define ICMP_TYPE_PARAMETER_PROBLEM             12	 // РџСЂРѕР±Р»РµРјР° СЃ РїР°СЂР°РјРµС‚СЂРѕРј.
+#define ICMP_TYPE_TIMESTAMP_REQUEST             13	 // Р—Р°РїСЂРѕСЃ РІСЂРµРјРµРЅРЅРѕР№ РѕС‚РјРµС‚РєРё РІ С„РѕСЂРјР°С‚Рµ Timestamp.
+#define ICMP_TYPE_TIMESTAMP_REPLY               14	 // РћС‚РІРµС‚ РЅР° Р·Р°РїСЂРѕСЃ РІСЂРµРјРµРЅРЅРѕР№ РѕС‚РјРµС‚РєРё.
+#define ICMP_TYPE_INFORMATION_REQUEST           15	 // Р—Р°РїСЂРѕСЃ РёРЅС„РѕСЂРјР°С†РёРё.
+#define ICMP_TYPE_INFORMATION_REPLY             16	 // РћС‚РІРµС‚ РЅР° Р·Р°РїСЂРѕСЃ РёРЅС„РѕСЂРјР°С†РёРё.
+#define ICMP_TYPE_ADDRESS_MASK_REQUEST          17	 // Р—Р°РїСЂРѕСЃ РјР°СЃРєРё Р°РґСЂРµСЃР°.
+#define ICMP_TYPE_ADDRESS_MASK_REPLY            18	 // РћС‚РІРµС‚ РЅР° Р·Р°РїСЂРѕСЃ РјР°СЃРєРё Р°РґСЂРµСЃР°.
+#define ICMP_TYPE_TRACEROUT                     30	 // РўСЂР°СЃСЃРёСЂРѕРІРєР° РјР°СЂС€СЂСѓС‚Р°.
+#define ICMP_TYPE_DATAGRAM_CONVERSION_ERROR     31	 // РћС€РёР±РєР° РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РґРµР№С‚Р°РіСЂР°РјРјС‹.
+#define ICMP_TYPE_MOBILE_HOST_REDIRECT          32	 // РџРµСЂРµРЅР°РїСЂР°РІР»РµРЅРёРµ РјРѕР±РёР»СЊРЅРѕРіРѕ С…РѕСЃС‚Р°.
+#define ICMP_TYPE_IPv6_WHERE_ARE_YOU            33	 // Р“РґРµ СЏ? - Р·Р°РїСЂРѕСЃ РїСЂРѕС‚РѕРєРѕР»Р° IPv6.
+#define ICMP_TYPE_IPv6_I_AM_HERE                34	 // Р—РґРµСЃСЊ - РѕС‚РІРµС‚ РЅР° Р·Р°РїСЂРѕСЃ.
+    BYTE code;				/* [1 Р±Р°Р№С‚] 	РљРѕРґ РѕС€РёР±РєРё - РѕРїСЂРµРґРµР»СЏРµС‚ РєРѕРґ РѕС€РёР±РєРё ICMP СЃРѕРѕР±С‰РµРЅРёСЏ (Р—Р°РІРёСЃРёС‚ РѕС‚ С‚РёРїР° СЃРѕРѕР±С‰РµРЅРёСЏ). */
+    WORD checksum;			/* [2 Р±Р°Р№С‚Р°]	РљРѕРЅС‚СЂРѕР»СЊРЅР°СЏ СЃСѓРјРјР° - РєРѕРЅС‚СЂРѕР»СЊРЅР°СЏ СЃСѓРјРјР° СЃС‡РёС‚Р°РµС‚СЃСЏ РґР»СЏ РІСЃРµР№ РґРµР№С‚Р°РіСЂР°РјРјС‹ С†РµР»РёРєРѕРј (Р—Р°РіРѕР»РѕРІРѕРє ICMP + РґР°РЅРЅС‹Рµ). */
+    WORD identifier;		/* [2 Р±Р°Р№С‚Р°]	РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ - РЅРµРѕР±С…РѕРґРёРј РґР»СЏ СЃРµР»РµРєС†РёРё СЃРѕРѕР±С‰РµРЅРёР№, РїРѕСЃР»Р°РЅРЅС‹С… СЂР°Р·РЅС‹Рј С…РѕСЃС‚Р°Рј. */
+    WORD sequence_number;	/* [2 Р±Р°Р№С‚Р°]	РќРѕРјРµСЂ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚Рё - РЅРµРѕР±С…РѕРґРёРј РґР»СЏ СЃРµР»РµРєС†РёРё РЅРµСЃРєРѕР»СЊРєРёС… СЃРѕРѕР±С‰РµРЅРёР№, РїРѕСЃР»Р°РЅРЅС‹С… РѕРґРЅРѕРјСѓ С…РѕСЃС‚Сѓ. */
 };
 
 #endif // ICMP_H_INCLUDED

@@ -1,8 +1,8 @@
-#ifndef TYPES_H_INCLUDED
+ο»Ώ#ifndef TYPES_H_INCLUDED
 #define TYPES_H_INCLUDED
 
-typedef unsigned char BYTE;				// 1 αΰις.
-typedef unsigned short int WORD;		// 2 αΰιςΰ.
-typedef unsigned long int DWORD;		// 4 αΰιςΰ.
+typedef unsigned char BYTE;				// 1 Π±Π°ΠΉΡ‚.
+typedef unsigned short int WORD;		// 2 Π±Π°ΠΉΡ‚Π°.
+typedef unsigned long int DWORD;		// 4 Π±Π°ΠΉΡ‚Π°.
 
 #endif // TYPES_H_INCLUDED
